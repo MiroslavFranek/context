@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import React,{ useState} from 'react';
+import ColorSchemaChanger from "./components/ColorSchemaChanger/ColorSchemaChanger.jsx"
+import NavBar from './components/NavBar/NavBar.jsx';
+import Block from './components/Block/Block.jsx';
 import './App.css';
 
+export const ThemeContext = React.createContext();
 function App() {
+  const[colorSchema,setColorSchema] = useState("midnightblue")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={colorSchema}>
+      <NavBar/>
+      <Block/>
+      <Block/>
+      <Block/>
+      <ColorSchemaChanger setColorSchema={setColorSchema}/>
+    </ThemeContext.Provider>
   );
 }
 
